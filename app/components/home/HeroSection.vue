@@ -1,11 +1,10 @@
 <script setup lang="ts">
   import PartnersSection from './PartnersSection.vue'
+  import InteractiveCases from './InteractiveCases.vue'
 </script>
 
 <template>
-  <section
-    class="relative min-h-screen flex flex-col items-center pt-24 lg:pt-32 overflow-hidden justify-between"
-  >
+  <section class="relative min-h-screen flex flex-col items-center overflow-hidden justify-between">
     <!-- Animated Gradient Background -->
     <UiBackgroundGradientAnimation
       gradient-background-start="rgb(8, 37, 54)"
@@ -35,35 +34,43 @@
 
     <div class="section-container flex-grow items-center flex relative z-10 w-full">
       <!-- Content -->
-      <div class="text-left animate-fade-in">
-        <h1
-          class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-6"
-        >
-          Wij zijn
-          <span class="text-gradient">YourFlow</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-white/80 max-w-xl mb-8 leading-relaxed">
-          Wij realiseren softwareoplossingen waarmee u klanten sneller, beter en tegen lagere kosten
-          bedient. Met slimme procesinnovatie en automatische procesuitvoering.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="#services" class="btn-primary">
-            Onze diensten
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
-          <a
-            href="#testimonials"
-            class="btn-secondary text-white border-white/40 hover:bg-black/30 hover:text-white"
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+        <!-- Left Column: Content -->
+        <div class="text-left animate-fade-in relative z-20">
+          <h1
+            class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-6"
           >
-            Bekijk projecten
-          </a>
+            Wij zijn
+            <span class="text-gradient">YourFlow</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-white/80 max-w-xl mb-8 leading-relaxed">
+            Wij realiseren softwareoplossingen waarmee u klanten sneller, beter en tegen lagere
+            kosten bedient. Met slimme procesinnovatie en automatische procesuitvoering.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#services" class="btn-primary">
+              Onze diensten
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+            <a
+              href="#testimonials"
+              class="btn-secondary text-white border-white/40 hover:bg-black/30 hover:text-white"
+            >
+              Bekijk projecten
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Cases -->
+        <div class="hidden lg:block relative z-20">
+          <InteractiveCases />
         </div>
       </div>
       <!-- Scroll indicator - positioned at actual bottom of section -->
