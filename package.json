@@ -1,0 +1,26 @@
+{
+  "name": "yourflow-fe",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "nuxt": "^4.3.1",
+    "nuxt-swiper": "^2.0.1",
+    "tailwind-merge": "^3.4.0",
+    "vue": "^3.5.27",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "prettier": "^3.8.1"
+  }
+}

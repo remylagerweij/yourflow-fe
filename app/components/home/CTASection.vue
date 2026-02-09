@@ -1,0 +1,95 @@
+<template>
+  <section id="about" class="relative py-20 lg:py-28 overflow-hidden">
+    <!-- Animated Gradient Background -->
+    <UiBackgroundGradientAnimation
+      gradient-background-start="rgb(8, 37, 54)"
+      gradient-background-end="rgb(13, 51, 72)"
+      first-color="19, 153, 250"
+      second-color="253, 71, 246"
+      third-color="100, 180, 255"
+      fourth-color="253, 71, 246"
+      fifth-color="19, 153, 250"
+      pointer-color="253, 71, 246"
+      size="60%"
+      :interactive="true"
+      container-class="absolute inset-0 -z-10"
+    />
+
+    <div class="section-container relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 drop-shadow-lg"
+        >
+          Klaar om uw digitale transformatie te
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-yf-blue to-yf-pink"
+            >versnellen</span
+          >?
+        </h2>
+        <p
+          class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+        >
+          Neem vandaag nog contact met ons op en ontdek hoe YourFlow uw organisatie kan helpen om
+          sneller, beter en efficiënter te werken.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <a
+            href="#contact"
+            class="group relative btn-primary text-lg px-8 py-4 overflow-hidden shadow-[0_0_20px_rgba(19,153,250,0.5)] hover:shadow-[0_0_30px_rgba(19,153,250,0.7)] transition-shadow duration-300"
+          >
+            <span class="relative z-10 flex items-center">
+              Contact opnemen
+              <svg
+                class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </span>
+            <!-- Shine effect -->
+            <div
+              class="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"
+            />
+          </a>
+
+          <a
+            href="mailto:info@yourflow.eu"
+            class="group inline-flex items-center justify-center px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:scale-105 cursor-pointer shadow-lg"
+          >
+            <svg
+              class="w-5 h-5 mr-3 group-hover:text-yf-pink transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            info@yourflow.eu
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+  @keyframes shine {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  .animate-shine {
+    animation: shine 0.75s;
+  }
+</style>

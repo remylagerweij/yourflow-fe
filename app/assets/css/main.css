@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-yf-navy antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-yf-blue text-white font-semibold rounded-lg
+           transition-all duration-300 cursor-pointer
+           hover:bg-yf-pink hover:shadow-lg hover:shadow-yf-pink/25
+           focus:outline-none focus:ring-2 focus:ring-yf-blue focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           border-2 border-yf-blue text-yf-blue font-semibold rounded-lg
+           transition-all duration-300 cursor-pointer
+           hover:bg-yf-blue hover:text-white
+           focus:outline-none focus:ring-2 focus:ring-yf-blue focus:ring-offset-2;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-yf-navy;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-yf-navy/70 max-w-3xl;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-yf-blue to-yf-pink bg-clip-text text-transparent;
+  }
+}
