@@ -127,10 +127,10 @@
     >
       <!-- Content -->
       <div
-        class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full"
+        class="grid grid-cols-1 lg:grid-cols-5 2xl:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full"
       >
         <!-- Left Column: Content -->
-        <div class="text-center lg:text-left relative z-30">
+        <div class="text-center lg:text-left relative z-30 lg:col-span-2 2xl:col-span-1">
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-5 sm:mb-6"
           >
@@ -167,7 +167,7 @@
         <!-- Right Column: Interactive Cases -->
         <div
           ref="heroCarousel"
-          class="relative z-20 2xl:col-span-2 opacity-0"
+          class="relative z-20 lg:col-span-3 2xl:col-span-2 opacity-0"
           style="will-change: transform, opacity"
         >
           <InteractiveCases @ready="onCarouselReady" />
