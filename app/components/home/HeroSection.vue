@@ -126,7 +126,9 @@
       class="fluid-container flex-grow items-center flex relative z-10 w-full py-8 sm:py-12 lg:py-0"
     >
       <!-- Content -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full"
+      >
         <!-- Left Column: Content -->
         <div class="text-center lg:text-left relative z-30">
           <h1
@@ -165,7 +167,7 @@
         <!-- Right Column: Interactive Cases -->
         <div
           ref="heroCarousel"
-          class="relative z-20 lg:col-span-2 opacity-0"
+          class="relative z-20 2xl:col-span-2 opacity-0"
           style="will-change: transform, opacity"
         >
           <InteractiveCases @ready="onCarouselReady" />
