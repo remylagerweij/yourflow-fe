@@ -128,7 +128,7 @@
       <!-- Content -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full">
         <!-- Left Column: Content -->
-        <div class="text-left relative z-30">
+        <div class="text-center lg:text-left relative z-30">
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-5 sm:mb-6"
           >
@@ -137,12 +137,15 @@
           </h1>
           <p
             ref="heroDescription"
-            class="text-base sm:text-xl text-white/70 max-w-xl mb-8 sm:mb-8 leading-relaxed opacity-0"
+            class="text-base sm:text-xl text-white/70 max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-8 leading-relaxed opacity-0"
           >
             Wij realiseren softwareoplossingen waarmee u klanten sneller, beter en tegen lagere
             kosten bedient. Met slimme procesinnovatie en automatische procesuitvoering.
           </p>
-          <div ref="heroCta" class="flex flex-col sm:flex-row gap-4 opacity-0">
+          <div
+            ref="heroCta"
+            class="flex flex-col sm:flex-row gap-4 opacity-0 items-center lg:items-start justify-center lg:justify-start"
+          >
             <UiAppButton href="#services">
               Onze diensten
               <template #icon>
