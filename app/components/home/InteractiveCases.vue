@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { Autoplay, Pagination, Mousewheel } from 'swiper/modules'
+
+  const emit = defineEmits<{ ready: [] }>()
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import 'swiper/css'
   import 'swiper/css/autoplay'
@@ -64,6 +66,7 @@
   ]
 
   const swiperInstance = ref<any>(null)
+
   const isDesktop = ref(true)
   let mediaQuery: MediaQueryList | null = null
 
@@ -95,11 +98,12 @@
 
   const onSwiper = (swiper: any) => {
     swiperInstance.value = swiper
+    emit('ready')
   }
 </script>
 
 <template>
-  <div class="cases-carousel relative w-full mx-auto animate-fade-in-up">
+  <div class="cases-carousel relative w-full mx-auto">
     <!-- Swiper Carousel (vertical on desktop, horizontal on mobile) -->
     <div class="relative">
       <Swiper

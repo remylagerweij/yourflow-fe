@@ -1,6 +1,85 @@
 <script setup lang="ts">
+  import { ref, onMounted } from 'vue'
+  import gsap from 'gsap'
   import PartnersSection from './PartnersSection.vue'
   import InteractiveCases from './InteractiveCases.vue'
+
+  const heroTitleLine1 = ref<HTMLElement>()
+  const heroTitleLine2 = ref<HTMLElement>()
+  const heroDescription = ref<HTMLElement>()
+  const heroCta = ref<HTMLElement>()
+  const heroCarousel = ref<HTMLElement>()
+  const heroScrollArrow = ref<HTMLElement>()
+
+  // Track whether carousel is ready (may fire before onMounted)
+  let carouselIsReady = false
+  let heroTimeline: gsap.core.Timeline | null = null
+
+  const onCarouselReady = () => {
+    carouselIsReady = true
+    // If timeline is already built, play it
+    heroTimeline?.play()
+  }
+
+  onMounted(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' }, delay: 0.15, paused: true })
+
+    // 1. Title lines — gentle clip reveal from left
+    tl.fromTo(
+      heroTitleLine1.value!,
+      { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+      { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.2 }
+    )
+    tl.fromTo(
+      heroTitleLine2.value!,
+      { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+      { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.5 },
+      '-=0.4'
+    )
+
+    // 2. Description — soft fade up
+    tl.fromTo(
+      heroDescription.value!,
+      { y: 16, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5 },
+      '-=1'
+    )
+
+    // 3. CTA button — gentle fade up with slight delay
+    tl.fromTo(heroCta.value!, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9 }, '-=1.2')
+
+    // 4. Carousel — GPU-accelerated fade + slide (will-change on wrapper avoids Swiper conflicts)
+    tl.fromTo(
+      heroCarousel.value!,
+      { y: 16, opacity: 0, force3D: true },
+      { y: 0, opacity: 1, duration: 1.8, force3D: true },
+      '-=1'
+    )
+
+    // 5. Scroll arrow — subtle appearance
+    if (heroScrollArrow.value) {
+      tl.fromTo(
+        heroScrollArrow.value,
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.0 },
+        '-=1.2'
+      )
+    }
+
+    heroTimeline = tl
+
+    // If carousel already signaled ready before we mounted, play now
+    if (carouselIsReady) {
+      tl.play()
+    }
+  })
+
+  const scrollToNextSection = () => {
+    const nextSection = document.getElementById('services')
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 </script>
 
 <template>
@@ -49,67 +128,60 @@
       <!-- Content -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full">
         <!-- Left Column: Content -->
-        <div class="text-left animate-fade-in relative z-30">
+        <div class="text-left relative z-30">
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-5 sm:mb-6"
           >
-            Wij zijn
-            <span class="text-gradient block">YourFlow</span>
+            <span ref="heroTitleLine1" class="inline-block opacity-0">Wij zijn</span>
+            <span ref="heroTitleLine2" class="text-gradient block opacity-0">YourFlow</span>
           </h1>
-          <p class="text-base sm:text-xl text-white/70 max-w-xl mb-8 sm:mb-8 leading-relaxed">
+          <p
+            ref="heroDescription"
+            class="text-base sm:text-xl text-white/70 max-w-xl mb-8 sm:mb-8 leading-relaxed opacity-0"
+          >
             Wij realiseren softwareoplossingen waarmee u klanten sneller, beter en tegen lagere
             kosten bedient. Met slimme procesinnovatie en automatische procesuitvoering.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#services" class="btn-primary">
+          <div ref="heroCta" class="flex flex-col sm:flex-row gap-4 opacity-0">
+            <UiAppButton href="#services">
               Onze diensten
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
+              <template #icon>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </template>
+            </UiAppButton>
           </div>
         </div>
 
         <!-- Right Column: Interactive Cases -->
-        <div class="relative z-20 lg:col-span-2">
-          <InteractiveCases />
+        <div
+          ref="heroCarousel"
+          class="relative z-20 lg:col-span-2 opacity-0"
+          style="will-change: transform, opacity"
+        >
+          <InteractiveCases @ready="onCarouselReady" />
         </div>
       </div>
       <!-- Scroll indicator - interactive -->
-      <div class="absolute bottom-8 left-0 right-0 hidden lg:flex justify-center z-10">
-        <button
-          class="scroll-arrow flex items-center justify-center w-12 h-12 rounded-full border border-white/20 text-white/50 hover:text-white cursor-pointer transition-all duration-500"
+      <div
+        ref="heroScrollArrow"
+        class="absolute bottom-8 left-0 right-0 hidden lg:flex justify-center z-10 opacity-0"
+      >
+        <UiArrowButton
+          direction="down"
+          variant="ghost"
           aria-label="Scroll to next section"
-          @click="
-            $el.closest('section')?.nextElementSibling?.scrollIntoView({ behavior: 'smooth' })
-          "
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </button>
+          @click="scrollToNextSection"
+        />
       </div>
     </div>
 
     <PartnersSection />
   </section>
 </template>
-
-<style scoped>
-  .scroll-arrow:hover {
-    box-shadow:
-      0 8px 25px rgba(19, 153, 250, 0.4),
-      0 16px 40px rgba(253, 71, 246, 0.2);
-    border-color: rgba(19, 153, 250, 0.5);
-  }
-</style>

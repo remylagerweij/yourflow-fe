@@ -1,8 +1,17 @@
 <script setup lang="ts">
+  import { ref } from 'vue'
   import { Autoplay } from 'swiper/modules'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import 'swiper/css'
   import 'swiper/css/autoplay'
+
+  const swiperReady = ref(false)
+
+  const onSwiper = () => {
+    setTimeout(() => {
+      swiperReady.value = true
+    }, 100)
+  }
 
   const partners = [
     { name: 'Appian', logo: 'appian' },
@@ -42,7 +51,9 @@
           768: { slidesPerView: 3, spaceBetween: 40 },
           1024: { slidesPerView: 4, spaceBetween: 48 },
         }"
-        class="w-full partners-swiper"
+        class="w-full partners-swiper transition-opacity duration-700 ease-out"
+        :class="swiperReady ? 'opacity-100' : 'opacity-0'"
+        @swiper="onSwiper"
       >
         <SwiperSlide v-for="partner in partners" :key="partner.logo">
           <div class="flex items-center justify-center h-12 md:h-16 opacity-60">

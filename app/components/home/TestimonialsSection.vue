@@ -129,25 +129,13 @@
 
         <!-- Navigation -->
         <div class="flex items-center justify-center gap-6 mt-10">
-          <button
-            class="group p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-yf-blue/20 hover:border-yf-blue/50 hover:text-yf-blue transition-all duration-300 cursor-pointer"
+          <UiArrowButton
+            direction="left"
+            variant="ghost"
+            size="lg"
             aria-label="Previous testimonial"
             @click="prevTestimonial"
-          >
-            <svg
-              class="w-6 h-6 transform group-hover:-translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+          />
 
           <!-- Dots -->
           <div class="flex gap-3">
@@ -163,25 +151,13 @@
             />
           </div>
 
-          <button
-            class="group p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-yf-blue/20 hover:border-yf-blue/50 hover:text-yf-blue transition-all duration-300 cursor-pointer"
+          <UiArrowButton
+            direction="right"
+            variant="ghost"
+            size="lg"
             aria-label="Next testimonial"
             @click="nextTestimonial"
-          >
-            <svg
-              class="w-6 h-6 transform group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+          />
         </div>
       </div>
     </div>

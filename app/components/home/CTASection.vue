@@ -41,18 +41,10 @@
           sneller, beter en efficiënter te werken.
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <a
-            href="#contact"
-            class="group relative btn-primary text-lg px-8 py-4 overflow-hidden shadow-[0_0_20px_rgba(19,153,250,0.5)] hover:shadow-[0_0_30px_rgba(19,153,250,0.7)] transition-shadow duration-300"
-          >
-            <span class="relative z-10 flex items-center">
-              Contact opnemen
-              <svg
-                class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+          <UiAppButton href="#contact" size="lg">
+            Contact opnemen
+            <template #icon>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -60,45 +52,29 @@
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </span>
-            <!-- Shine effect -->
-            <div
-              class="absolute inset-0 -translate-x-full group-hover:animate-shine bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"
-            />
-          </a>
+            </template>
+          </UiAppButton>
 
-          <a
+          <UiAppButton
             href="mailto:info@yourflow.eu"
-            class="group inline-flex items-center justify-center px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:scale-105 cursor-pointer shadow-lg"
+            variant="secondary"
+            size="lg"
+            icon-position="left"
           >
-            <svg
-              class="w-5 h-5 mr-3 group-hover:text-yf-pink transition-colors"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+            <template #icon>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </template>
             info@yourflow.eu
-          </a>
+          </UiAppButton>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-  @keyframes shine {
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  .animate-shine {
-    animation: shine 0.75s;
-  }
-</style>
