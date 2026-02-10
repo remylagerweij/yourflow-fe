@@ -29,7 +29,7 @@
 <template>
   <header class="fixed top-4 left-4 right-4 z-50">
     <nav
-      class="bg-black/30 backdrop-blur-md max-w-7xl mx-auto rounded-2xl shadow-nav border-1 border-black/40 px-4 sm:px-6 lg:px-8"
+      class="bg-black/30 backdrop-blur-md fluid-container rounded-2xl shadow-nav border-1 border-black/40 px-4 sm:px-6 lg:px-8"
     >
       <div class="flex items-center justify-between h-16 lg:h-20">
         <!-- Logo with hover animation -->
@@ -60,13 +60,7 @@
 
         <!-- CTA Button with glow effect -->
         <div class="hidden xl:block">
-          <NuxtLink to="/contact" class="btn-primary relative overflow-hidden group">
-            <span class="relative z-10">Contact opnemen</span>
-            <!-- Shimmer effect on hover -->
-            <div
-              class="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            />
-          </NuxtLink>
+          <UiAppButton to="/contact"> Contact opnemen </UiAppButton>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -135,13 +129,7 @@
 
             <!-- Mobile CTA -->
             <div class="px-4 mt-4">
-              <NuxtLink
-                to="/contact"
-                class="btn-primary w-full text-center justify-center"
-                @click="closeMenu"
-              >
-                Contact opnemen
-              </NuxtLink>
+              <UiAppButton to="/contact" block @click="closeMenu"> Contact opnemen </UiAppButton>
             </div>
           </div>
         </div>

@@ -33,6 +33,7 @@
 
   const isSafari = ref(false)
   const isClient = ref(false)
+  const gradientReady = ref(false)
 
   // Interactive offset state - exposed for template binding
   const offsetX = ref(0)
@@ -48,6 +49,11 @@
   onMounted(() => {
     isClient.value = true
     isSafari.value = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+
+    // Delay gradient reveal so blobs are positioned before appearing
+    setTimeout(() => {
+      gradientReady.value = true
+    }, 200)
 
     if (props.interactive) {
       startAnimation()
@@ -201,12 +207,13 @@
     <!-- Gradient animations - only render on client -->
     <div
       v-if="isClient"
-      :class="
+      :class="[
         cn(
-          'gradients-container absolute inset-0 h-full w-full pointer-events-none',
+          'gradients-container absolute inset-0 h-full w-full pointer-events-none transition-opacity duration-1000 ease-out',
           isSafari ? 'blur-2xl' : '[filter:url(#blurMe)_blur(40px)]'
-        )
-      "
+        ),
+        gradientReady ? 'opacity-100' : 'opacity-0',
+      ]"
     >
       <div class="absolute rounded-full blob-animate-1" :style="blob1Style" />
       <div class="absolute rounded-full blob-animate-2" :style="blob2Style" />

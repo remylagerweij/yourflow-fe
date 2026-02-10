@@ -35,7 +35,7 @@
       />
     </div>
 
-    <div class="section-container py-16 lg:py-24 relative z-10">
+    <div class="fluid-container py-16 lg:py-24 relative z-10">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
         <!-- Brand -->
         <div class="lg:col-span-2">

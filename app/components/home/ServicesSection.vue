@@ -23,7 +23,7 @@
 
 <template>
   <section id="services" class="py-20 lg:py-28 bg-slate-50">
-    <div class="section-container">
+    <div class="fluid-container">
       <!-- Header -->
       <div class="text-center mb-16">
         <h2 class="section-title mb-4">Onze <span class="text-gradient">aanpak</span></h2>

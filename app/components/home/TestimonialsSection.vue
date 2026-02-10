@@ -57,8 +57,17 @@
 </script>
 
 <template>
-  <section id="testimonials" class="py-20 lg:py-28 bg-yf-navy overflow-hidden">
-    <div class="section-container relative z-10">
+  <section id="testimonials" class="relative py-20 lg:py-28 bg-yf-navy overflow-hidden">
+    <!-- Noise Texture Overlay -->
+    <div
+      class="absolute inset-0 pointer-events-none z-0 opacity-[0.07]"
+      style="
+        background-image: url('/images/bg-noise.svg');
+        background-repeat: repeat;
+        background-size: 100px;
+      "
+    />
+    <div class="fluid-container relative z-10">
       <!-- Header -->
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
@@ -120,25 +129,13 @@
 
         <!-- Navigation -->
         <div class="flex items-center justify-center gap-6 mt-10">
-          <button
-            class="group p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-yf-blue/20 hover:border-yf-blue/50 hover:text-yf-blue transition-all duration-300 cursor-pointer"
+          <UiArrowButton
+            direction="left"
+            variant="ghost"
+            size="lg"
             aria-label="Previous testimonial"
             @click="prevTestimonial"
-          >
-            <svg
-              class="w-6 h-6 transform group-hover:-translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+          />
 
           <!-- Dots -->
           <div class="flex gap-3">
@@ -154,25 +151,13 @@
             />
           </div>
 
-          <button
-            class="group p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-yf-blue/20 hover:border-yf-blue/50 hover:text-yf-blue transition-all duration-300 cursor-pointer"
+          <UiArrowButton
+            direction="right"
+            variant="ghost"
+            size="lg"
             aria-label="Next testimonial"
             @click="nextTestimonial"
-          >
-            <svg
-              class="w-6 h-6 transform group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+          />
         </div>
       </div>
     </div>
