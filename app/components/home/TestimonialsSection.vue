@@ -57,7 +57,16 @@
 </script>
 
 <template>
-  <section id="testimonials" class="py-20 lg:py-28 bg-yf-navy overflow-hidden">
+  <section id="testimonials" class="relative py-20 lg:py-28 bg-yf-navy overflow-hidden">
+    <!-- Noise Texture Overlay -->
+    <div
+      class="absolute inset-0 pointer-events-none z-0 opacity-[0.07]"
+      style="
+        background-image: url('/images/bg-noise.svg');
+        background-repeat: repeat;
+        background-size: 100px;
+      "
+    />
     <div class="section-container relative z-10">
       <!-- Header -->
       <div class="text-center mb-16">

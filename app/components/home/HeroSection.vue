@@ -4,7 +4,9 @@
 </script>
 
 <template>
-  <section class="relative min-h-screen flex flex-col items-center overflow-hidden justify-between">
+  <section
+    class="relative h-screen max-h-screen flex flex-col items-center overflow-hidden justify-between"
+  >
     <!-- Animated Gradient Background -->
     <UiBackgroundGradientAnimation
       gradient-background-start="rgb(8, 37, 54)"
@@ -20,6 +22,15 @@
       container-class="absolute inset-0 -z-10"
     />
 
+    <!-- Noise Texture Overlay -->
+    <div
+      class="absolute inset-0 pointer-events-none z-0 opacity-[0.07]"
+      style="
+        background-image: url('/images/bg-noise.svg');
+        background-repeat: repeat;
+        background-size: 100px;
+      "
+    />
     <!-- Oversized YourFlow Pattern - Bottom Right -->
     <div
       class="absolute -bottom-0 -right-32 lg:-right-48 w-[750px] h-[360px] lg:w-[1200px] lg:h-[578px] xl:w-[1500px] xl:h-[723px] pointer-events-none opacity-[0.12] select-none"
@@ -34,9 +45,9 @@
 
     <div class="section-container flex-grow items-center flex relative z-10 w-full">
       <!-- Content -->
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+      <div class="grid lg:grid-cols-3 gap-12 lg:gap-20 items-center w-full">
         <!-- Left Column: Content -->
-        <div class="text-left animate-fade-in relative z-20">
+        <div class="text-left animate-fade-in relative z-30">
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-6"
           >
@@ -59,33 +70,44 @@
                 />
               </svg>
             </a>
-            <a
-              href="#testimonials"
-              class="btn-secondary text-white border-white/40 hover:bg-black/30 hover:text-white"
-            >
-              Bekijk projecten
-            </a>
           </div>
         </div>
 
         <!-- Right Column: Interactive Cases -->
-        <div class="hidden lg:block relative z-20">
+        <div class="hidden lg:block relative z-20 lg:col-span-2">
           <InteractiveCases />
         </div>
       </div>
-      <!-- Scroll indicator - positioned at actual bottom of section -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block animate-bounce z-10">
-        <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
+      <!-- Scroll indicator - interactive -->
+      <div class="absolute bottom-8 left-0 right-0 hidden md:flex justify-center z-10">
+        <button
+          class="scroll-arrow flex items-center justify-center w-12 h-12 rounded-full border border-white/20 text-white/50 hover:text-white cursor-pointer transition-all duration-500"
+          aria-label="Scroll to next section"
+          @click="
+            $el.closest('section')?.nextElementSibling?.scrollIntoView({ behavior: 'smooth' })
+          "
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
     <PartnersSection />
   </section>
 </template>
+
+<style scoped>
+  .scroll-arrow:hover {
+    box-shadow:
+      0 8px 25px rgba(19, 153, 250, 0.4),
+      0 16px 40px rgba(253, 71, 246, 0.2);
+    border-color: rgba(19, 153, 250, 0.5);
+  }
+</style>
