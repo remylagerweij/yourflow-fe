@@ -5,7 +5,7 @@
 
 <template>
   <section
-    class="relative h-screen max-h-screen flex flex-col items-center overflow-hidden justify-between"
+    class="relative lg:h-screen lg:max-h-screen flex flex-col items-center overflow-hidden justify-between pt-24 lg:pt-0"
   >
     <!-- Animated Gradient Background -->
     <UiBackgroundGradientAnimation
@@ -43,18 +43,18 @@
       />
     </div>
 
-    <div class="section-container flex-grow items-center flex relative z-10 w-full">
+    <div class="container flex-grow items-center flex relative z-10 w-full py-8 sm:py-12 lg:py-0">
       <!-- Content -->
-      <div class="grid lg:grid-cols-3 gap-12 lg:gap-20 items-center w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full">
         <!-- Left Column: Content -->
         <div class="text-left animate-fade-in relative z-30">
           <h1
-            class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-6"
+            class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-5 sm:mb-6"
           >
             Wij zijn
-            <span class="text-gradient">YourFlow</span>
+            <span class="text-gradient block">YourFlow</span>
           </h1>
-          <p class="text-lg sm:text-xl text-white/80 max-w-xl mb-8 leading-relaxed">
+          <p class="text-base sm:text-xl text-white/70 max-w-xl mb-8 sm:mb-8 leading-relaxed">
             Wij realiseren softwareoplossingen waarmee u klanten sneller, beter en tegen lagere
             kosten bedient. Met slimme procesinnovatie en automatische procesuitvoering.
           </p>
@@ -74,12 +74,12 @@
         </div>
 
         <!-- Right Column: Interactive Cases -->
-        <div class="hidden lg:block relative z-20 lg:col-span-2">
+        <div class="relative z-20 lg:col-span-2">
           <InteractiveCases />
         </div>
       </div>
       <!-- Scroll indicator - interactive -->
-      <div class="absolute bottom-8 left-0 right-0 hidden md:flex justify-center z-10">
+      <div class="absolute bottom-8 left-0 right-0 hidden lg:flex justify-center z-10">
         <button
           class="scroll-arrow flex items-center justify-center w-12 h-12 rounded-full border border-white/20 text-white/50 hover:text-white cursor-pointer transition-all duration-500"
           aria-label="Scroll to next section"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { Autoplay, Pagination, Mousewheel } from 'swiper/modules'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import 'swiper/css'
@@ -64,8 +64,29 @@
   ]
 
   const swiperInstance = ref<any>(null)
+  const isDesktop = ref(true)
+  let mediaQuery: MediaQueryList | null = null
 
-  // Function to slide to a specific index when a card is clicked
+  const swiperDirection = computed(() => (isDesktop.value ? 'vertical' : 'horizontal'))
+  const swiperSlidesPerView = computed(() => (isDesktop.value ? 2 : 1.3))
+  const swiperKey = computed(() => (isDesktop.value ? 'desktop' : 'mobile'))
+
+  const updateMedia = () => {
+    if (mediaQuery) {
+      isDesktop.value = mediaQuery.matches
+    }
+  }
+
+  onMounted(() => {
+    mediaQuery = window.matchMedia('(min-width: 1024px)')
+    isDesktop.value = mediaQuery.matches
+    mediaQuery.addEventListener('change', updateMedia)
+  })
+
+  onUnmounted(() => {
+    mediaQuery?.removeEventListener('change', updateMedia)
+  })
+
   const slideTo = (index: number) => {
     if (swiperInstance.value) {
       swiperInstance.value.slideTo(index)
@@ -79,14 +100,15 @@
 
 <template>
   <div class="cases-carousel relative w-full mx-auto animate-fade-in-up">
-    <!-- Swiper Vertical Carousel -->
+    <!-- Swiper Carousel (vertical on desktop, horizontal on mobile) -->
     <div class="relative">
       <Swiper
+        :key="swiperKey"
         :modules="[Autoplay, Pagination, Mousewheel]"
-        direction="vertical"
-        :slides-per-view="2"
+        :direction="swiperDirection"
+        :slides-per-view="swiperSlidesPerView"
         :centered-slides="true"
-        :space-between="16"
+        :space-between="isDesktop ? 16 : 12"
         :rewind="true"
         :speed="600"
         :initial-slide="2"
@@ -100,28 +122,36 @@
           el: '.cases-pagination',
           clickable: true,
         }"
-        class="cases-swiper"
+        :class="isDesktop ? 'cases-swiper-vertical' : 'cases-swiper-horizontal'"
         @swiper="onSwiper"
       >
         <SwiperSlide v-for="(item, index) in cases" :key="item.id" v-slot="{ isActive }">
           <div
-            class="glass-card h-full w-full rounded-2xl flex flex-row overflow-hidden group cursor-pointer transition-all duration-500"
-            :class="isActive ? 'glass-card--active' : 'glass-card--inactive'"
+            class="glass-card h-full w-full rounded-2xl overflow-hidden group cursor-pointer transition-all duration-500"
+            :class="[
+              isActive ? 'glass-card--active' : 'glass-card--inactive',
+              isDesktop ? 'flex flex-row' : 'flex flex-col',
+            ]"
             @click="slideTo(index)"
           >
-            <!-- Left Column: Thumbnail -->
-            <div class="w-2/5 relative aspect-video shrink-0">
+            <!-- Thumbnail -->
+            <div
+              :class="isDesktop ? 'w-2/5 aspect-video shrink-0' : 'w-full h-24 shrink-0'"
+              class="relative"
+            >
               <img
                 :src="item.image"
                 :alt="item.client"
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                class="absolute inset-0 w-full h-full object-cover"
               />
-              <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
             </div>
 
-            <!-- Right Column: Content -->
-            <div class="w-2/3 flex flex-col justify-between p-5 pl-4">
-              <!-- Top Row: Logo + Title -->
+            <!-- Content -->
+            <div
+              :class="isDesktop ? 'w-2/3 p-5 pl-4' : 'p-3'"
+              class="flex flex-col justify-between"
+            >
               <div>
                 <div class="flex items-center gap-3 mb-2">
                   <span
@@ -141,7 +171,7 @@
                 </p>
               </div>
 
-              <!-- Bottom Row: Tags -->
+              <!-- Tags -->
               <div class="mt-3 flex flex-wrap gap-1.5">
                 <span
                   v-for="tag in item.tags"
@@ -157,13 +187,14 @@
       </Swiper>
     </div>
 
-    <!-- Vertical Pagination - Right side -->
+    <!-- Pagination -->
     <div class="cases-pagination" />
   </div>
 </template>
 
 <style scoped>
-  .cases-swiper {
+  /* Vertical mode (desktop) */
+  .cases-swiper-vertical {
     height: 550px;
     overflow: hidden;
     mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
@@ -174,6 +205,12 @@
       black 80%,
       transparent 100%
     );
+  }
+
+  /* Horizontal mode (mobile/tablet) */
+  .cases-swiper-horizontal {
+    overflow: hidden;
+    padding-bottom: 8px;
   }
 
   :deep(.swiper-slide) {
@@ -219,16 +256,29 @@
     background: rgba(255, 255, 255, 0.03);
   }
 
-  /* Vertical pagination – right side */
-  .cases-pagination {
-    position: absolute;
-    right: -24px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 30;
+  /* Vertical pagination – right side (desktop) */
+  @media (min-width: 1024px) {
+    .cases-pagination {
+      position: absolute;
+      right: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 30;
+    }
+  }
+
+  /* Horizontal pagination – bottom (mobile/tablet) */
+  @media (max-width: 1023px) {
+    .cases-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 12px;
+      z-index: 30;
+    }
   }
 
   :deep(.cases-pagination .swiper-pagination-bullet) {
@@ -242,7 +292,18 @@
 
   :deep(.cases-pagination .swiper-pagination-bullet-active) {
     background: white;
-    height: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    :deep(.cases-pagination .swiper-pagination-bullet-active) {
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    :deep(.cases-pagination .swiper-pagination-bullet-active) {
+      width: 24px;
+    }
   }
 
   /* Entrance animation */
