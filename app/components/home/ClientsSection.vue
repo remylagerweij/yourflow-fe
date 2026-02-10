@@ -5,7 +5,7 @@
 
 <template>
   <section class="py-20 lg:py-28 bg-white">
-    <div class="section-container">
+    <div class="fluid-container">
       <!-- Header -->
       <div class="text-center mb-16">
         <h2 class="section-title mb-4">Onze <span class="text-gradient">klanten</span></h2>

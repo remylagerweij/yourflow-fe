@@ -43,7 +43,9 @@
       />
     </div>
 
-    <div class="container flex-grow items-center flex relative z-10 w-full py-8 sm:py-12 lg:py-0">
+    <div
+      class="fluid-container flex-grow items-center flex relative z-10 w-full py-8 sm:py-12 lg:py-0"
+    >
       <!-- Content -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-20 items-center w-full">
         <!-- Left Column: Content -->

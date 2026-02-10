@@ -18,7 +18,7 @@
   <section
     class="relative z-20 w-full py-8 md:pt-12 bg-black/30 backdrop-blur-md border-t border-black/50"
   >
-    <div class="section-container">
+    <div class="fluid-container">
       <p
         class="text-center text-white/80 text-xs md:text-sm font-medium uppercase tracking-wider mb-6 md:mb-8"
       >

@@ -24,7 +24,7 @@
         background-size: 100px;
       "
     />
-    <div class="section-container relative z-10">
+    <div class="fluid-container relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2
           class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 drop-shadow-lg"
