@@ -132,8 +132,8 @@
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white leading-tight mb-5 sm:mb-6"
           >
-            <span ref="heroTitleLine1" class="inline-block opacity-0">Wij zijn</span>
-            <span ref="heroTitleLine2" class="text-gradient block opacity-0">YourFlow</span>
+            <span ref="heroTitleLine1" class="inline-block pb-2 opacity-0">Wij zijn</span>
+            <span ref="heroTitleLine2" class="text-gradient block pb-2 opacity-0">YourFlow</span>
           </h1>
           <p
             ref="heroDescription"
