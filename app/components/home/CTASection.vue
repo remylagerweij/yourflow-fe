@@ -15,15 +15,6 @@
       container-class="absolute inset-0 -z-10"
     />
 
-    <!-- Noise Texture Overlay -->
-    <div
-      class="absolute inset-0 pointer-events-none z-0 opacity-[0.07]"
-      style="
-        background-image: url('/images/bg-noise.svg');
-        background-repeat: repeat;
-        background-size: 100px;
-      "
-    />
     <div class="fluid-container relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2

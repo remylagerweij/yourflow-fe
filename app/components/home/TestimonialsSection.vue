@@ -59,13 +59,18 @@
 <template>
   <section id="testimonials" class="relative py-20 lg:py-28 bg-yf-navy overflow-hidden">
     <!-- Noise Texture Overlay -->
-    <div
-      class="absolute inset-0 pointer-events-none z-0 opacity-[0.07]"
-      style="
-        background-image: url('/images/bg-noise.svg');
-        background-repeat: repeat;
-        background-size: 100px;
-      "
+    <UiBackgroundGradientAnimation
+      gradient-background-start="rgb(8, 37, 54)"
+      gradient-background-end="rgb(13, 51, 72)"
+      first-color="19, 153, 250"
+      second-color="253, 71, 246"
+      third-color="100, 180, 255"
+      fourth-color="253, 71, 246"
+      fifth-color="19, 153, 250"
+      pointer-color="253, 71, 246"
+      size="60%"
+      :interactive="true"
+      container-class="absolute inset-0 -z-10"
     />
     <div class="fluid-container relative z-10">
       <!-- Header -->
