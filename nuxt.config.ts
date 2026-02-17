@@ -37,6 +37,11 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap',
         },
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/images/yourflow-pattern.svg',
+        },
       ],
     },
   },
